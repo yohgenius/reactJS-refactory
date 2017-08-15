@@ -1,0 +1,1 @@
+["0d3ddf98684986c45f742d7b6586158985dd4d76","acc9f7ff71e07f530c886d3897b4c6b7ce416411",["../lib/custom"],[25],{"version":3,"sources":["/firstPro/node_modules/websql/custom/index.js"],"names":["module","exports","require"],"mappings":"AAAAA,OAAOC,OAAP,GAAiBC,QAAQ,eAAR,CAAjB","sourcesContent":["module.exports = require('../lib/custom');"]}]
