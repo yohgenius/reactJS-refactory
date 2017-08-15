@@ -20,6 +20,9 @@ var App = function (_React$Component) {
   babelHelpers.createClass(App, [{
     key: 'render',
     value: function render() {
+      var pic = {
+        uri: 'https://upload.wikimedia.org/wikipedia/commons/d/de/Bananavarieties.jpg'
+      };
       return _react2.default.createElement(
         _reactNative.View,
         { style: styles.container },
@@ -27,7 +30,8 @@ var App = function (_React$Component) {
           _reactNative.Text,
           null,
           'Kuda Zebra'
-        )
+        ),
+        _react2.default.createElement(_reactNative.Image, { source: pic, style: { width: 193, height: 110 } })
       );
     }
   }]);
