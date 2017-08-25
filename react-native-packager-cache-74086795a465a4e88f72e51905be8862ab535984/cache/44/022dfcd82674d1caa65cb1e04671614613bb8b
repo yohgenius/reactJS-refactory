@@ -9,19 +9,79 @@ var _react2 = babelHelpers.interopRequireDefault(_react);
 
 var _reactNative = require('react-native');
 
+var _api = require('./api.js');
+
+var _api2 = babelHelpers.interopRequireDefault(_api);
+
 var App = function (_React$Component) {
   babelHelpers.inherits(App, _React$Component);
+  babelHelpers.createClass(App, [{
+    key: '_onPressButtonRead',
+    value: function _onPressButtonRead() {
+      fetch('http://jsonplaceholder.typicode.com/posts/1', { method: 'GET' }).then(function (response) {
+        return response.json();
+      }).then(function (responseData) {
+        console.log(responseData);
+      }).done();
+    }
+  }, {
+    key: '_onPressButtonCreate',
+    value: function _onPressButtonCreate() {
+      fetch('http://jsonplaceholder.typicode.com/posts', { method: 'POST' }, { data: { title: 'foo', body: 'bar', userId: 1 } }).then(function (response) {
+        return response.json();
+      }).then(function (responseData) {
+        console.log(responseData);
+      }).done();
+    }
+  }, {
+    key: '_onPressButtonUpdate',
+    value: function _onPressButtonUpdate() {
+      fetch('http://jsonplaceholder.typicode.com/posts/1', { method: 'PUT' }, { data: { id: 1, title: 'foo', body: 'bar', userId: 1 } }).then(function (response) {
+        return response.json();
+      }).then(function (responseData) {
+        console.log(responseData);
+      }).done();
+    }
+  }, {
+    key: '_onPressButtonDelete',
+    value: function _onPressButtonDelete() {
+      fetch('http://jsonplaceholder.typicode.com/posts/1', { method: 'DELETE' }).then(function (response) {
+        return response.json();
+      }).then(function (responseData) {
+        console.log(responseData);
+      }).done();
+    }
+  }]);
 
-  function App() {
+  function App(props) {
     babelHelpers.classCallCheck(this, App);
-    return babelHelpers.possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).apply(this, arguments));
+
+    var _this = babelHelpers.possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).call(this, props));
+
+    _this.state = {
+      rovers: [],
+      roverName: ''
+    };
+    return _this;
   }
 
   babelHelpers.createClass(App, [{
+    key: 'componentWillMount',
+    value: function componentWillMount() {
+      var _this2 = this;
+
+      _api2.default.getRovers().then(function (res) {
+        _this2.setState({
+          rovers: res.rovers,
+          roverName: res.rovers[0].name
+        });
+      });
+    }
+  }, {
     key: 'render',
     value: function render() {
       var pic = {
-        uri: 'https://upload.wikimedia.org/wikipedia/commons/d/de/Bananavarieties.jpg'
+        uri: 'https://image.ibb.co/c4mguv/aa.jpg'
       };
       return _react2.default.createElement(
         _reactNative.View,
@@ -29,9 +89,50 @@ var App = function (_React$Component) {
         _react2.default.createElement(
           _reactNative.Text,
           null,
-          'Kuda Zebra'
+          'Yogi Muhammad Taufik'
         ),
-        _react2.default.createElement(_reactNative.Image, { source: pic, style: { width: 193, height: 110 } })
+        _react2.default.createElement(_reactNative.Image, { source: pic, style: { width: 193, height: 110 } }),
+        _react2.default.createElement(
+          _reactNative.Text,
+          null,
+          'Refactory Batch 5'
+        ),
+        _react2.default.createElement(
+          _reactNative.TouchableHighlight,
+          { style: styles.button, onPress: this._onPressButtonRead },
+          _react2.default.createElement(
+            _reactNative.Text,
+            null,
+            'Show Posts'
+          )
+        ),
+        _react2.default.createElement(
+          _reactNative.TouchableHighlight,
+          { style: styles.button, onPress: this._onPressButtonCreate },
+          _react2.default.createElement(
+            _reactNative.Text,
+            null,
+            'Add Post'
+          )
+        ),
+        _react2.default.createElement(
+          _reactNative.TouchableHighlight,
+          { style: styles.button, onPress: this._onPressButtonUpdate },
+          _react2.default.createElement(
+            _reactNative.Text,
+            null,
+            'Edit Post'
+          )
+        ),
+        _react2.default.createElement(
+          _reactNative.TouchableHighlight,
+          { style: styles.button, onPress: this._onPressButtonDelete },
+          _react2.default.createElement(
+            _reactNative.Text,
+            null,
+            'Delete Post'
+          )
+        )
       );
     }
   }]);

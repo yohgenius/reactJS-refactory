@@ -1,0 +1,10 @@
+var api = {
+	getRovers: function getRovers() {
+		var url = 'https://jsonplaceholder.typicode.com/posts/';
+		return fetch(url).then(function (res) {
+			return res.json();
+		});
+	}
+};
+
+module.exports = api;
